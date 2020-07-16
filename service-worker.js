@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bbby-pricing/precache-manifest.d602eed88d5a5c694075695056eb5b7d.js"
+  "/bbby-pricing/precache-manifest.06ae1eabd5613e5004540bbeb443751b.js"
 );
 
 self.addEventListener('message', (event) => {

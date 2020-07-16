@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f84703cf516d23bb7403261f904d32e",
+    "revision": "589411654887079cad08c76f84ad3031",
     "url": "/bbby-pricing/index.html"
   },
   {
-    "revision": "88338398170af4214ce3",
+    "revision": "befde657afc939d737c3",
     "url": "/bbby-pricing/static/css/main.22df9116.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bbby-pricing/static/js/2.ffdaada1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "88338398170af4214ce3",
-    "url": "/bbby-pricing/static/js/main.8b7a946d.chunk.js"
+    "revision": "befde657afc939d737c3",
+    "url": "/bbby-pricing/static/js/main.47c51cbb.chunk.js"
   },
   {
     "revision": "d761e8919a49031026eb",
