@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/bbby-pricing/static/css/main.22df9116.chunk.css",
+    "main.js": "/bbby-pricing/static/js/main.8b7a946d.chunk.js",
+    "main.js.map": "/bbby-pricing/static/js/main.8b7a946d.chunk.js.map",
+    "runtime-main.js": "/bbby-pricing/static/js/runtime-main.f73e2074.js",
+    "runtime-main.js.map": "/bbby-pricing/static/js/runtime-main.f73e2074.js.map",
+    "static/js/2.ffdaada1.chunk.js": "/bbby-pricing/static/js/2.ffdaada1.chunk.js",
+    "static/js/2.ffdaada1.chunk.js.map": "/bbby-pricing/static/js/2.ffdaada1.chunk.js.map",
+    "index.html": "/bbby-pricing/index.html",
+    "precache-manifest.d602eed88d5a5c694075695056eb5b7d.js": "/bbby-pricing/precache-manifest.d602eed88d5a5c694075695056eb5b7d.js",
+    "service-worker.js": "/bbby-pricing/service-worker.js",
+    "static/css/main.22df9116.chunk.css.map": "/bbby-pricing/static/css/main.22df9116.chunk.css.map",
+    "static/js/2.ffdaada1.chunk.js.LICENSE.txt": "/bbby-pricing/static/js/2.ffdaada1.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/bbby-pricing/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f73e2074.js",
+    "static/js/2.ffdaada1.chunk.js",
+    "static/css/main.22df9116.chunk.css",
+    "static/js/main.8b7a946d.chunk.js"
+  ]
+}
