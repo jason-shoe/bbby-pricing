@@ -8,31 +8,28 @@ class Product extends Component {
         super(props);
         this.state = {
             info: {},
-            info_new: {}
+            info_new: {},
+            numericCols:[],
+            nonNumericCols:[]
         }
-      }
-    componentDidMount() {
-        axios.get('http://localhost:5000/get_info/'+this.props.id)
-        .then(response => {
-            this.setState({
-                info: response.data
-            })
-        })
-      }
+    }
     componentDidUpdate(prevProps){
-        if(this.props.id != prevProps.id){
-            axios.get('http://localhost:5000/get_info/'+this.props.id)
-            .then(response => {
-                this.setState({
-                    info: response.data
+        if(this.props.data != prevProps.data){
+            this.setState({
+                info: this.props.data,
+                numericCols: this.props.columns.filter(function (item) {
+                    return (parseInt(item) == item);
+                }),
+                nonNumericCols: this.props.columns.filter(function (item) {
+                    return !(parseInt(item) == item);
                 })
             })
         }
         
     }
     render(){
-        const {info } = this.state;
-        const num_non_numeric = 10
+        const {info, numericCols, nonNumericCols} = this.state;
+        console.log("the data", this.props.data)
         return(
             <div style={{width: '100%'}}>
                 <h3 style={{textAlign:'center'}}>{info['TITLE']}</h3>
@@ -40,7 +37,7 @@ class Product extends Component {
                         <tbody>
                             <tr>
                                 <td style ={{fontWeight:'bold',textAlign:'right'}}>Current Price:</td>
-                                <td>${info[Object.keys(info)[Object.keys(info).length-num_non_numeric - 1]]}</td>
+                                <td>${info[numericCols[numericCols.length - 1]]}</td>
                             </tr>
                             <tr>
                                 <td style ={{fontWeight:'bold',textAlign:'right'}}>Color:</td>
@@ -72,29 +69,18 @@ class Product extends Component {
                             height={300}
                             getX={d => d[0]}
                             getY={d => d[1]}
-                            yDomain={[0,Math.max(...Object.values(info).slice(0,Object.keys(info).length-num_non_numeric))]}>
+                            yDomain={[0,Math.max(...Object.values(numericCols.map(key => info[key])))]}>
                         <HorizontalGridLines />
                         <LineMarkSeries
                             color="#0fb1c0"
                             fill="#00c0ef"
-                            data={Object.keys(info).slice(0,Object.keys(info).length-num_non_numeric).map(key => [parseInt(key), info[key]])}/>
+                            data={numericCols.map(key => [parseInt(key), info[key]])}/>
                         <XAxis title="X" />
                         <YAxis />
                         </XYPlot>
                     </div>
-                </div>
-                                
+                </div>         
             </div>
-            // <div>
-                
-            //     <div>{Object.keys(info).map(key => <p>{key}</p>)}</div>
-            //     <td dangerouslySetInnerHTML={{__html: table}} />
-            //     <td dangerouslySetInnerHTML={{__html: items}} />
-            //     <p>Hello</p>
-            //     <p>{items}</p>
-            //     <p>{items.TITLE}</p>
-            //     <img src={items}/>
-            // </div>
 
         )
     }

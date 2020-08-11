@@ -7,57 +7,56 @@ class SimilarProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            info: {'CATEGORY':0}
+            table: {},
+            prod_id: 0,
+            numericCols:[],
+            nonNumericCols:[]
         }
       }
-    componentDidMount() {
-        axios.get('http://localhost:5000/get_info_similar/'+this.props.product_id + '/' + this.props.id)
-        .then(response => {
-            this.setState({
-                info: response.data
-            })
-        })
-      }
-    
+
     componentDidUpdate(prevProps){
-        if(this.props.id != prevProps.id){
-            axios.get('http://localhost:5000/get_info_similar/'+this.props.product_id + '/' + this.props.id)
-            .then(response => {
-                this.setState({
-                    info: response.data
+        if(this.props.prod_id != prevProps.prod_id){
+            this.setState({
+                table: this.props.data,
+                prod_id: this.props.prod_id,
+                numericCols: this.props.columns.filter(function (item) {
+                    return (parseInt(item) == item);
+                }),
+                nonNumericCols: this.props.columns.filter(function (item) {
+                    return !(parseInt(item) == item);
                 })
             })
         }
       }
     render(){
-        const {info } = this.state;
-        const num_non_numeric = 10
+        const {table, prod_id, numericCols, nonNumericCols} = this.state;
+        console.log(prod_id)
         return(
             <div style={{display:'flex',flexDirection:'row',flexWrap:'wrap', justifyContent:'center'}}>
-                {Object.keys(info['CATEGORY']).map(key => 
+                {Object.keys(table).filter(key => table[key]['PRODUCT_ID'] == prod_id).map(key => 
                 <div style={{width: '22%',marginLeft:'1%',margin:'1%', border:'1px solid black', borderRadius:'10px', padding:'3px'}}>
-                    <h4 style={{marginTop:'3px', borderBottom:'1px solid black', textAlign:'center'}}>{info['TITLE'][key]}</h4>
+                    <h4 style={{marginTop:'3px', borderBottom:'1px solid black', textAlign:'center'}}>{table[key]['TITLE']}</h4>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-start'}}>
                         <div style={{width:'50%'}}>
-                            <img style={{maxWidth:'100%',height:'auto'}}src={info['IMAGE_URL'][key]}></img>
+                            <img style={{maxWidth:'100%',height:'auto'}}src={table[key]['IMAGE_URL']}></img>
                         </div>
                         <table style={{margin:'0 auto'}}>
                             <tbody>
                                 <tr>
                                     <td style ={{fontWeight:'bold',textAlign:'left'}}>Price:</td>
-                                    <td>${info[Object.keys(info)[Object.keys(info).length-num_non_numeric - 1]][key]}</td>
+                                    <td>${table[key][numericCols[numericCols.length - 1]]}</td>
                                 </tr>
                                 <tr>
                                     <td style ={{fontWeight:'bold',textAlign:'left'}}>Color:</td>
-                                    <td>{info['COLOR_GROUP'][key]}</td>
+                                    <td>{table[key]['COLOR_GROUP']}</td>
                                 </tr>
                                 <tr>
                                     <td style ={{fontWeight:'bold',textAlign:'left'}}>Cat:</td>
-                                    <td>{info['CATEGORY'][key]}</td>
+                                    <td>{table[key]['CATEGORY']}</td>
                                 </tr>
                                 <tr>
                                     <td style ={{fontWeight:'bold',textAlign:'left'}}>ID:</td>
-                                    <td>{info['ID'][key]}</td>
+                                    <td>{table[key]['ID']}</td>
                                 </tr>
                             </tbody>
                         </table>
